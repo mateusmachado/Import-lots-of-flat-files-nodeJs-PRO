@@ -53,9 +53,9 @@ function splitValues(value){
 }
 
 function setTotal(){
-  for (var i = 0; i < quantity.length; i++) {
-    var priceItem = new bigDecimal(quantity[i]).multiply(new bigDecimal(price[i]));
-    total = total.add(priceItem);
+  for (let priceItem of quantity) {
+    priceItem = new bigDecimal(quantity).multiply(new bigDecimal(price));
+    total = total.add(priceItem);    
   } 	
 }
 
