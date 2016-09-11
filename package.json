@@ -1,0 +1,19 @@
+{
+  "name": "ilegra-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "devDependencies": {
+    "big-decimal": "latest",
+    "mocha": "latest",
+    "chai": "latest"
+  },
+  "author": "mateus",
+  "license": "ISC"
+}
