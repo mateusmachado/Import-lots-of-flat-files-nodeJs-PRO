@@ -2,28 +2,19 @@
 
 const file = require("./splitFile.js");
 const bigDecimal = require('big-decimal');
-
 const salesManData = '001';
 const customerData = '002';
 const salesData = '003';
-
 const dataID = 0;
 const saleID = 1;
 const itemID = 2;
 const worstSalesman = 3;
 
-let salesMan = 0;
-let customers = 0;
-let idBestSales = 0;
-let nameWorstSalesman = 0;
-let bigSale = bigDecimal.ZERO;
-let smallSale = bigDecimal.ZERO;
-let total = bigDecimal.ZERO;
-
-let quantity;
-let price;
-
-
+let salesMan, customers, idBestSales, nameWorstSalesman;
+salesMan = customers = idBestSales = nameWorstSalesman =0;
+let bigSale, smallSale, total;
+bigSale = smallSale = total = bigDecimal.ZERO;
+let quantity,price;
 
 file.splittedFile().forEach(function(value){
   parseFile(value);
@@ -46,13 +37,13 @@ function parseFile(value) {
 }
 
 function splitValues(value){
-  var item = value[itemID].replace("[", "").replace("]", "").split(",");
+  let item = value[itemID].replace("[", "").replace("]", "").split(",");
   quantity = item[saleID].split("-");
-  price = item[itemID].split("-");
-  total = bigDecimal.ZERO;	
+  price = item[itemID].split("-");  	
 }
 
 function setTotal(){
+  total = bigDecimal.ZERO;	
   for (let priceItem of quantity) {
     priceItem = new bigDecimal(quantity).multiply(new bigDecimal(price));
     total = total.add(priceItem);    
