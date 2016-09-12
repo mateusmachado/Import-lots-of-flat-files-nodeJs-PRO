@@ -17,10 +17,11 @@ bigSale = smallSale = total = bigDecimal.ZERO;
 let quantity,price;
 
 file.splittedFile().forEach(function(value){
-  parseFile(value);
+  parseValues(value); 
+  console.log(value);
 });
 
-function parseFile(value) {
+function parseValues(value) {
   switch (value[dataID]) {
     case salesManData:
       salesMan +=1;
@@ -29,10 +30,10 @@ function parseFile(value) {
       customers +=1;
       break;
     case salesData:
-	  splitValues(value);
-	  setTotal();
- 	  setIdBestSale(value);   
-	  setNameWorstSalesman(value);                                   
+	    splitValues(value);
+	    setTotal();
+ 	    setIdBestSale(value);   
+	    setNameWorstSalesman(value);                                   
  } 
 }
 
@@ -53,14 +54,14 @@ function setTotal(){
 function setIdBestSale(value) {
   if (total.compareTo(bigSale) == 1) {
     bigSale = bigSale.add(total);
-	idBestSales = value[saleID];
+	  idBestSales = value[saleID];
   }
 }
 
 function setNameWorstSalesman(value) {
   if ((total.compareTo(smallSale) == -1) || (smallSale.compareTo(bigDecimal.ZERO) == 0)) {
-     smallSale = smallSale.add(total);
-     nameWorstSalesman = value[worstSalesman];
+    smallSale = smallSale.add(total);
+    nameWorstSalesman = value[worstSalesman];
   } 	
 }
 
@@ -72,7 +73,7 @@ module.exports = {
 	}		
 };
 
-// console.log(salesMan);
-// console.log(customers);
-// console.log(idBestSales);
-// console.log(nameWorstSalesman);
+console.log(salesMan);
+console.log(customers);
+console.log(idBestSales);
+console.log(nameWorstSalesman);
