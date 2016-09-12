@@ -7,7 +7,7 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
-describe('tests the file extension:', () => {	
+describe('tests the file existence:', () => {	
 	it('it should return true if the file exists ', () => {    	  	 
       expect(fs.existsSync(path)).to.be.equal(true); 
 	});
