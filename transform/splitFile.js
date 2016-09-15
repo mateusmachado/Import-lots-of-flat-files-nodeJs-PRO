@@ -11,8 +11,16 @@ module.exports = {
         return arr;            
 	},
 
-	itemValues: function itemValues(value, itemID) {
-      return value[itemID].replace("[", "").replace("]", "").split(",");
-    }
+    itemValues: function splitItemValues(value, itemID) {
+  	  return value[itemID].replace("[", "").replace("]", "").split(",");
+	},
+
+	quantityValues: function splitItemQuantity(dataID, value, itemValues) {
+	  return itemValues[dataID].split("-");
+	},
+
+	priceValues: function splitItemPrice(itemID, value, itemValues){
+	  return itemValues[itemID].split("-");
+	}
 };
 

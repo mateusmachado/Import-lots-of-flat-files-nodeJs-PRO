@@ -23,29 +23,14 @@ function parseValues(value) {
       customer.amount +=1;
       break;
     case sale.DATA:
-      // split.itemValues(value, itemID);   
-      let item = splitItemValues(value);
-      let quantity = splitItemQuantity(dataID, value, item);  
-      let price = splitItemPrice(itemID, value, item); 
+      let item = split.itemValues(value, itemID);
+      let quantity = split.quantityValues(dataID, value, item);
+      let price = split.priceValues(itemID, value, item);
 
-	    // splitValues(value);
 	    setTotal(quantity, price);
  	    // setIdBestSale(value);   
 	    // setNameWorstSalesman(value);                                   
  } 
-}
-
-
-function splitItemValues(value) {
-  return value[itemID].replace("[", "").replace("]", "").split(",");
-}
-
-function splitItemQuantity(dataID, value, item) {
-  return item[dataID].split("-");
-}
-
-function splitItemPrice(itemID, value, item){
-  return item[itemID].split("-");
 }
 
 function setTotal(quantity, price){
