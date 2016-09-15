@@ -6,9 +6,13 @@ module.exports = {
 	splittedFile: function() {				
 		let arr = [];
 		readFile.inputFile().split('\n').forEach((line) => {   			  			
-  			arr.push(line.split('ç'));
+  			arr.push(line.split(/ç(?![a-zç])/));
         });  
         return arr;            
-	}		
+	},
+
+	itemValues: function itemValues(value, itemID) {
+      return value[itemID].replace("[", "").replace("]", "").split(",");
+    }
 };
 
