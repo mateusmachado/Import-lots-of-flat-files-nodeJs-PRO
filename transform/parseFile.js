@@ -10,14 +10,14 @@ const lineID = 0;
 const dataID = 1;
 const itemID = 2;
 
-//
-let total =0;
 let bigSale = bigDecimal.ZERO;
 let smallSale = bigDecimal.ZERO;
-let idBestSales = 0;
+
 let worstSalesman = 3;
 let nameWorstSalesman;
-//
+let aux = 0;
+let idBestSales = 0;
+let idBestSaleValue = 0;
 
 split.splittedFile().forEach(function(value){
   parseValues(value); 
@@ -36,39 +36,14 @@ function parseValues(value) {
       let quantity = split.quantityValues(dataID, value, item);
       let price = split.priceValues(itemID, value, item);
 
-	    setTotal(quantity, price);
-
-
- 	    setIdBestSale(value);  
-	    setNameWorstSalesman(value);                                   
+	    let totalValue = sale.setTotal(quantity, price);
+ 	    idBestSaleValue = sale.setIdBestSale(value, totalValue, dataID, idBestSales);
+	    nameWorstSalesman = salesman.setNameWorstSalesman(value, totalValue, smallSale, worstSalesman);                            
  } 
 }
 
-function setTotal(quantity, price){
-  total = bigDecimal.ZERO;	
-  quantity.forEach(priceItem => {
-    priceItem = new bigDecimal(quantity).multiply(new bigDecimal(price));
-    total = total.add(priceItem);    
-  });	
-}
-
-function setIdBestSale(value) {
-  if (total.compareTo(bigSale) == 1) {
-     bigSale = bigSale.add(total);
-	   idBestSales = value[dataID];
-  }
-}
-
-function setNameWorstSalesman(value) {
-  if ((total.compareTo(smallSale) == -1) || (smallSale.compareTo(bigDecimal.ZERO) == 0)) {
-    smallSale = smallSale.add(total);
-    nameWorstSalesman = value[worstSalesman];
-  } 	
-}
-
-
 module.exports = {
 	outputValues: function() {
-	    return 'SalesMan: ' +salesman.amount+ '\nCustomers: ' +customer.amount+ '\nID of the most expensive sale: ' +idBestSales+ '\nWorst salesman ever: ' +nameWorstSalesman;          
+	    return 'SalesMan: ' +salesman.amount+ '\nCustomers: ' +customer.amount+ '\nID of the most expensive sale: ' +idBestSaleValue+ '\nWorst salesman ever: ' +nameWorstSalesman;          
 	}		
 };
